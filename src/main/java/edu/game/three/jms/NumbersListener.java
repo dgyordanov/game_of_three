@@ -1,5 +1,6 @@
 package edu.game.three.jms;
 
+import edu.game.three.domain.GameManager;
 import edu.game.three.domain.GameTurn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
@@ -19,11 +20,15 @@ public class NumbersListener {
     @Autowired
     private GameTurnConverter gameTurnConverter;
 
+    @Autowired
+    private GameManager gameManager;
+
     @JmsListener(destination = "${jms.listenOnQueue}")
     public void receiveMessage(Message message) throws JMSException {
         // TODO: Configure the listener to use this adapter
         GameTurn gameTurn = (GameTurn) gameTurnConverter.fromMessage(message);
-        System.out.println("Received <" + gameTurn + ">");
+        System.out.println("Received via JMS <" + gameTurn + ">");
 
+        gameManager.processTurn(gameTurn);
     }
 }

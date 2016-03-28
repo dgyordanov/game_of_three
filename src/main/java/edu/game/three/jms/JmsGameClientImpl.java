@@ -23,5 +23,6 @@ public class JmsGameClientImpl implements GameClient {
     @Override
     public void sendNextNumber(GameTurn gameTurn) {
         jmsTemplate.convertAndSend(sendTo, gameTurn);
+        System.out.println("Sent via JMS <" + gameTurn + ">");
     }
 }
