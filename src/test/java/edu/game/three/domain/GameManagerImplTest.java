@@ -33,6 +33,7 @@ public class GameManagerImplTest {
         gameManager = new GameManagerImpl(gameSessionManager, gameClient);
 
         ReflectionTestUtils.setField(gameManager, "playerName", TEST_PLAYER_NAME_1);
+        ReflectionTestUtils.setField(gameManager, "playerActive", true);
 
         stdin = System.in;
     }
