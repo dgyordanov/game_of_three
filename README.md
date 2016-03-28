@@ -23,7 +23,7 @@ Instructions how to run the whole setup:
 - Run a game node after the JMS broker is started
 
 How to run game node  
-1. Build using: ./gradlew build
+1. Build using: ./gradlew build  
 2. Run the spring boot fat jar using one of the two available profiles(player1, player2)
 *java -Dspring.profiles.active=player1 -jar build/libs/game_of_three-0.1.0.jar*
 *java -Dspring.profiles.active=player2 -jar build/libs/game_of_three-0.1.0.jar*
