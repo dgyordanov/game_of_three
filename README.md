@@ -17,4 +17,21 @@ For each player, the JMS destinations on which it listens and send numbers are d
 ![alt tag](https://github.com/dgyordanov/game_of_three/blob/master/Game%20of%20three%20flow.png)
 
 ## Run
-<TODO>
+You need JRE 8 in order to run a game node.
+Instructions how to run the whole setup:
+- Run a JMS broker instance located in https://github.com/dgyordanov/embedded_jms
+- Run a game node after the JMS broker is started
+
+How to run game node  
+1. Build using: ./gradlew build
+2. Run the spring boot fat jar using one of the two available profiles(player1, player2)  
+*java -Dspring.profiles.active=player1 -jar build/libs/game_of_three-0.1.0.jar*  
+*java -Dspring.profiles.active=player2 -jar build/libs/game_of_three-0.1.0.jar*  
+
+NOTE: gradle bootRun task doesn't handle the System.in correctly so please use the commands from point 2 to start game nodes.
+
+
+After the 3 processes are up and running, the game could start. Enjoy!
+
+
+
