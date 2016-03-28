@@ -3,3 +3,4 @@ jms:
   sendToQueue: player1
 player:
   name: player2
+  active: false

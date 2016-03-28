@@ -18,6 +18,9 @@ public class GameManagerImpl implements GameManager {
     @Value("${player.name}")
     private String playerName;
 
+    @Value("${player.active}")
+    private boolean playerActive;
+
     @Autowired
     public GameManagerImpl(GameSessionManager gameSessionManager, GameClient gameClient) {
         this.gameSessionManager = gameSessionManager;
@@ -59,6 +62,9 @@ public class GameManagerImpl implements GameManager {
 
     @Override
     public void startGame() {
+        if (!playerActive) {
+            return;
+        }
         boolean manual = getManual();
 
         NumberManager numberManager = NumberManagerFactory.getInstance(manual);
@@ -68,6 +74,9 @@ public class GameManagerImpl implements GameManager {
         GameSession gameSession = gameSessionManager.createNewSession(manual);
         gameSession.getTurns().add(startNumber);
         gameSession.setLastTurnActor(playerName);
+
+        System.out.println(String.format("################ new game stared with session ID %s ################",
+                gameSession.getUuid()));
 
         gameClient.sendNextNumber(new GameTurn(gameSession.getUuid(), startNumber, playerName));
     }

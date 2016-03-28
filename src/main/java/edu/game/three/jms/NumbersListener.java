@@ -25,10 +25,11 @@ public class NumbersListener {
 
     @JmsListener(destination = "${jms.listenOnQueue}")
     public void receiveMessage(Message message) throws JMSException {
-        // TODO: Configure the listener to use this adapter
-        GameTurn gameTurn = (GameTurn) gameTurnConverter.fromMessage(message);
-        System.out.println("Received via JMS <" + gameTurn + ">");
+        final GameTurn gameTurn = (GameTurn) gameTurnConverter.fromMessage(message);
+        System.out.println(String.format("Player: %s - Number: %d - game ID: %s", gameTurn.getPlayerName(),
+                gameTurn.getNumber(), gameTurn.getGameUUID()));
 
-        gameManager.processTurn(gameTurn);
+        // run async not to block the listener
+        new Thread(() -> gameManager.processTurn(gameTurn)).start();
     }
 }

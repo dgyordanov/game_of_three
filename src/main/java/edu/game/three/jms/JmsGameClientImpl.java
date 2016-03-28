@@ -22,7 +22,8 @@ public class JmsGameClientImpl implements GameClient {
 
     @Override
     public void sendNextNumber(GameTurn gameTurn) {
+        System.out.println(String.format("Player: %s - Number: %d - game ID: %s", gameTurn.getPlayerName(),
+                gameTurn.getNumber(), gameTurn.getGameUUID()));
         jmsTemplate.convertAndSend(sendTo, gameTurn);
-        System.out.println("Sent via JMS <" + gameTurn + ">");
     }
 }
