@@ -1,0 +1,11 @@
+spring:
+ activemq:
+    broker-url: vm://localhost?broker.persistent=false
+    user: user
+    password: pass
+
+jms:
+  listenOnQueue: testListenOnQueue
+  sendToQueue: testSendToQueue
+player:
+  name: testPlayer
