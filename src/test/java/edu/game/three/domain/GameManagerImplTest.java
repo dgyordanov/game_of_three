@@ -141,11 +141,15 @@ public class GameManagerImplTest {
 
     @Test
     public void testGameLost() {
+        // Spy in order not to start a new game
+        GameManager gameManagerSpy = spy(gameManager);
+        doNothing().when(gameManagerSpy).startGame();
+
         GameSession session = gameSessionManager.createNewSession(false);
         session.getTurns().addAll(Arrays.asList(9, 3));
         session.setLastTurnActor(TEST_PLAYER_NAME_1);
 
-        gameManager.processTurn(new GameTurn(session.getUuid(), 1, TEST_PLAYER_NAME_2));
+        gameManagerSpy.processTurn(new GameTurn(session.getUuid(), 1, TEST_PLAYER_NAME_2));
 
         verify(gameClient, never()).sendNextNumber(Matchers.any(GameTurn.class));
 

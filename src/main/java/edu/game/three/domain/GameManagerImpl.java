@@ -38,6 +38,7 @@ public class GameManagerImpl implements GameManager {
 
         if (opponentTurn.getNumber() == 1) {
             System.out.println("You lost");
+            startGame();
             return;
         }
 
@@ -46,11 +47,13 @@ public class GameManagerImpl implements GameManager {
         session.getTurns().add(responseNumber);
         session.setLastTurnActor(playerName);
 
+        gameClient.sendNextNumber(new GameTurn(session.getUuid(), responseNumber, playerName));
+
         if (responseNumber == 1) {
             System.out.println("You won");
+            startGame();
         }
 
-        gameClient.sendNextNumber(new GameTurn(session.getUuid(), responseNumber, playerName));
     }
 
 
@@ -96,7 +99,7 @@ public class GameManagerImpl implements GameManager {
     }
 
     private boolean getManual() {
-        System.out.println("Do you want a manual game? [y/n] - default no.");
+        System.out.println("A new game could be started. Do you want a manual game? [y/n] - default no.");
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine().equalsIgnoreCase("y");
     }
