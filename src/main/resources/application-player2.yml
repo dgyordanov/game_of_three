@@ -1,0 +1,3 @@
+jms:
+  listenOnQueue: player2
+  sendToQueue: player1

@@ -11,6 +11,8 @@ The communication protocol between players is JMS message broker. The reason of 
 - A player may not be available when the other one starts - JMS stores the message until a destination consumer is connected.
 - Each player runs on its own (independent programs, two browsers, web‐workers,...) - the JMS broker is a mediator and each player is a separate process which communicates via the broker.
 
+For each player, the JMS destinations on which it listens and send numbers are discovered using spring profiles. Every player will have a separate profile and a separate JMS queue names for listening and sending.
+
 *Workflow:*
 ![alt tag](https://github.com/dgyordanov/game_of_three/blob/master/Game%20of%20three%20flow.png)
 
