@@ -12,7 +12,7 @@ The communication protocol between players is JMS message broker. The reason of 
 - Each player runs on its own (independent programs, two browsers, web‐workers,...) - the JMS broker is a mediator and each player is a separate process which communicates via the broker.
 
 *Workflow:*
-![alt tag](https://goo.gl/photos/XyP2T3Y7gWEXUwsN8)
+![alt tag](https://github.com/dgyordanov/game_of_three/blob/master/Game%20of%20three%20flow.png)
 
 ## Run
 <TODO>
