@@ -1,5 +1,7 @@
 package edu.game.three.domain;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Random;
 
 /**
@@ -7,27 +9,14 @@ import java.util.Random;
  *
  * @author Diyan Yordanov
  */
+@Component
 public class AutoNumberManager implements NumberManager {
 
     private static final Random RANDOM_GENERATOR = new Random();
 
     @Override
     public int getNextNumber(int number) {
-        if (number <= 1) {
-            throw new IllegalArgumentException(String.format("%d is negative. Only positive numbers are accepted.",
-                    number));
-        }
-        int reminder = number % 3;
-        switch (reminder) {
-            case 0:
-                return number / 3;
-            case 1:
-                return (number + 1) / 3;
-            case 2:
-                return (number + 1) / 3;
-            default:
-                return number / 3;
-        }
+        return NumbersUtil.calculateNextNumber(number);
     }
 
     @Override

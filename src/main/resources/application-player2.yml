@@ -1,3 +1,5 @@
 jms:
   listenOnQueue: player2
   sendToQueue: player1
+player:
+  name: player2

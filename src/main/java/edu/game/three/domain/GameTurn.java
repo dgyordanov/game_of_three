@@ -7,14 +7,17 @@ package edu.game.three.domain;
  */
 public class GameTurn {
 
-    public GameTurn(String gameUUID, int number) {
-        this.gameUUID = gameUUID;
-        this.number = number;
-    }
-
     private int number;
 
     private String gameUUID;
+
+    private String playerName;
+
+    public GameTurn(String gameUUID, int number, String playerName) {
+        this.gameUUID = gameUUID;
+        this.number = number;
+        this.playerName = playerName;
+    }
 
     public int getNumber() {
         return number;
@@ -30,6 +33,14 @@ public class GameTurn {
 
     public void setGameUUID(String gameUUID) {
         this.gameUUID = gameUUID;
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
     }
 
     @Override

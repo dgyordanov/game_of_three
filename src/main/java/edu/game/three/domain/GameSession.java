@@ -6,6 +6,8 @@ import java.util.List;
 
 /**
  * Representing a game with the moves
+ * <p>
+ * NOTE: Session could be improved to keep both player names from the beginning so no third player could join.
  *
  * @author Diyan Yordanov
  */

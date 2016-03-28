@@ -20,18 +20,21 @@ class GameTurnConverter implements MessageConverter {
 
     private static final String NUMBER_PROP_NAME = "number";
     private static final String GAME_UUID_PROP_NAME = "gameUUID";
+    private static final String PLAYER_PROP_NAME = "playerName";
 
     public Message toMessage(Object object, Session session) throws JMSException, MessageConversionException {
         GameTurn gameTurn = (GameTurn) object;
         MapMessage message = session.createMapMessage();
-        message.setString("gameUUID", gameTurn.getGameUUID());
+        message.setString(GAME_UUID_PROP_NAME, gameTurn.getGameUUID());
         message.setInt(NUMBER_PROP_NAME, gameTurn.getNumber());
+        message.setString(PLAYER_PROP_NAME, gameTurn.getPlayerName());
         return message;
     }
 
     public Object fromMessage(Message message) throws JMSException, MessageConversionException {
         MapMessage mapMessage = (MapMessage) message;
-        return new GameTurn(mapMessage.getString(GAME_UUID_PROP_NAME), mapMessage.getInt(NUMBER_PROP_NAME));
+        return new GameTurn(mapMessage.getString(GAME_UUID_PROP_NAME), mapMessage.getInt(NUMBER_PROP_NAME),
+                mapMessage.getString(PLAYER_PROP_NAME));
     }
 
 }
