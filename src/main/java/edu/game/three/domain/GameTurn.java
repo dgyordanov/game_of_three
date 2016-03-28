@@ -1,13 +1,13 @@
-package edu.game.three.jms;
+package edu.game.three.domain;
 
 /**
- * A DTO used for in the communication layer for exchanging data between players
+ * A java bean used for in the communication layer for exchanging data between players
  *
  * @author Diyan Yordanov
  */
-public class GameTurnDTO {
+public class GameTurn {
 
-    public GameTurnDTO(String gameUUID, int number) {
+    public GameTurn(String gameUUID, int number) {
         this.gameUUID = gameUUID;
         this.number = number;
     }
@@ -34,7 +34,7 @@ public class GameTurnDTO {
 
     @Override
     public String toString() {
-        return "GameTurnDTO{" +
+        return "GameTurn{" +
                 "number=" + number +
                 ", gameUUID=" + gameUUID +
                 '}';

@@ -1,5 +1,6 @@
 package edu.game.three.jms;
 
+import edu.game.three.domain.GameTurn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.core.JmsTemplate;
@@ -20,7 +21,7 @@ public class JmsGameClientImpl implements GameClient {
     private String sendTo;
 
     @Override
-    public void sendNextNumber(GameTurnDTO gameTurnDTO) {
-        jmsTemplate.convertAndSend(sendTo, gameTurnDTO);
+    public void sendNextNumber(GameTurn gameTurn) {
+        jmsTemplate.convertAndSend(sendTo, gameTurn);
     }
 }
