@@ -75,7 +75,7 @@ public class GameManagerImpl implements GameManager {
         gameSession.getTurns().add(startNumber);
         gameSession.setLastTurnActor(playerName);
 
-        System.out.println(String.format("################ new game stared with session ID %s ################",
+        System.out.println(String.format("################ new game started with session ID %s ################",
                 gameSession.getUuid()));
 
         gameClient.sendNextNumber(new GameTurn(gameSession.getUuid(), startNumber, playerName));
