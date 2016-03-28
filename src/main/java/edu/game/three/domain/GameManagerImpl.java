@@ -13,17 +13,14 @@ public class GameManagerImpl implements GameManager {
 
     private GameSessionManager gameSessionManager;
 
-    private NumberManager numberManager;
-
     private GameClient gameClient;
 
     @Value("${player.name}")
     private String playerName;
 
     @Autowired
-    public GameManagerImpl(GameSessionManager gameSessionManager, NumberManager numberManager, GameClient gameClient) {
+    public GameManagerImpl(GameSessionManager gameSessionManager, GameClient gameClient) {
         this.gameSessionManager = gameSessionManager;
-        this.numberManager = numberManager;
         this.gameClient = gameClient;
     }
 
@@ -44,6 +41,7 @@ public class GameManagerImpl implements GameManager {
             return;
         }
 
+        NumberManager numberManager = NumberManagerFactory.getInstance(session.isManual());
         int responseNumber = numberManager.getNextNumber(opponentTurn.getNumber());
         session.getTurns().add(responseNumber);
         session.setLastTurnActor(playerName);
@@ -58,9 +56,13 @@ public class GameManagerImpl implements GameManager {
 
     @Override
     public void startGame() {
+        boolean manual = getManual();
+
+        NumberManager numberManager = NumberManagerFactory.getInstance(manual);
+
         int startNumber = numberManager.getInitialNumber();
 
-        GameSession gameSession = gameSessionManager.createNewSession(getManual());
+        GameSession gameSession = gameSessionManager.createNewSession(manual);
         gameSession.getTurns().add(startNumber);
         gameSession.setLastTurnActor(playerName);
 

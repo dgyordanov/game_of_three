@@ -22,7 +22,6 @@ public class GameManagerImplTest {
     public static final String TEST_PLAYER_NAME_1 = "testPlayer";
     public static final String TEST_PLAYER_NAME_2 = "another player";
     private GameSessionManager gameSessionManager;
-    private NumberManager numberManager;
     private GameClient gameClient;
     private GameManager gameManager;
     private InputStream stdin;
@@ -31,8 +30,7 @@ public class GameManagerImplTest {
     public void setup() {
         gameSessionManager = new GameSessionManagerImpl();
         gameClient = mock(GameClient.class);
-        numberManager = spy(new AutoNumberManager());
-        gameManager = new GameManagerImpl(gameSessionManager, numberManager, gameClient);
+        gameManager = new GameManagerImpl(gameSessionManager, gameClient);
 
         ReflectionTestUtils.setField(gameManager, "playerName", TEST_PLAYER_NAME_1);
 

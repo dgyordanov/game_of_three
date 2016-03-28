@@ -1,7 +1,5 @@
 package edu.game.three.domain;
 
-import org.springframework.stereotype.Component;
-
 import java.util.Random;
 
 /**
@@ -9,7 +7,6 @@ import java.util.Random;
  *
  * @author Diyan Yordanov
  */
-@Component
 public class AutoNumberManager implements NumberManager {
 
     private static final Random RANDOM_GENERATOR = new Random();
