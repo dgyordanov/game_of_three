@@ -36,8 +36,8 @@ public class UserNumberManager implements NumberManager {
         try {
             Scanner scanner = new Scanner(System.in);
             int number = scanner.nextInt();
-            if (number < 1) {
-                System.out.println("Error: number should be >= 1");
+            if (number <= 1) {
+                System.out.println("Error: number should be > 1");
                 return getInitialNumber();
             }
             return number;
